@@ -112,9 +112,15 @@ def build_message():
 
     body = "\n".join(lines).strip()
     if not body:
-        body = "No stories could be fetched today — all feeds failed. Check the workflow logs."
-    title = f"Morning Briefing — {today}"
+        body = "No stories could be fetched today - all feeds failed. Check the workflow logs."
+    # HTTP header values must be Latin-1, so keep the Title ASCII (hyphen, not em dash).
+    title = f"Morning Briefing - {today}"
     return title, body, top_link
+
+
+def _latin1_safe(value):
+    """Strip characters that can't go in an HTTP header (headers are Latin-1)."""
+    return str(value).encode("latin-1", "ignore").decode("latin-1")
 
 
 def send_to_ntfy(title, body, top_link):
@@ -139,6 +145,9 @@ def send_to_ntfy(title, body, top_link):
     token = os.environ.get("NTFY_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
+
+    # Ensure every header value is Latin-1 safe (HTTP header requirement).
+    headers = {k: _latin1_safe(v) for k, v in headers.items()}
 
     resp = requests.post(
         url,
