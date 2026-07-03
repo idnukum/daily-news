@@ -9,26 +9,53 @@ on:
   # Lets you trigger a manual test run from the Actions tab.
   workflow_dispatch:
 
+# Permissions required to publish to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Avoid overlapping Pages deployments.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   briefing:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Send briefing
+      - name: Build the briefing page
+        run: python news_briefing.py build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Send phone notification
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          # Optional overrides (uncomment in the workflow if you need them):
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          # Optional overrides:
           # NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
           # NTFY_TOKEN:  ${{ secrets.NTFY_TOKEN }}
           # MAX_PER_CAT: "5"
-        run: python news_briefing.py
+        run: python news_briefing.py notify
