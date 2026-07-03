@@ -3,15 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Morning Briefing — 03 Jul 2026 (Preview)</title>
+<title>The Morning Briefing — Preview</title>
 <style>
   :root { --ink:#121212; --muted:#666; --rule:#dcdcdc; --accent:#326891; }
   * { box-sizing:border-box; }
-  body {
-    margin:0; background:#f7f7f2; color:var(--ink);
+  body { margin:0; background:#f7f7f2; color:var(--ink);
     font-family:Georgia,'Times New Roman',serif; line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
+    -webkit-font-smoothing:antialiased; }
   .wrap { max-width:720px; margin:0 auto; padding:28px 20px 64px; }
   header.masthead { text-align:center; border-bottom:3px double var(--ink);
     padding-bottom:14px; margin-bottom:8px; }
@@ -25,8 +23,14 @@
   h2.cat-name { font-size:13px; letter-spacing:.18em; text-transform:uppercase;
     font-weight:700; color:var(--ink); border-bottom:2px solid var(--ink);
     padding-bottom:6px; margin:0 0 4px; }
-  article { padding:16px 0; border-bottom:1px solid var(--rule); }
+  article { display:flex; gap:16px; align-items:flex-start;
+    padding:16px 0; border-bottom:1px solid var(--rule); }
   article:last-child { border-bottom:none; }
+  .txt { flex:1; min-width:0; }
+  .thumb { flex:0 0 120px; width:120px; height:84px; object-fit:cover;
+    border:1px solid var(--rule); background:#e6e2d8;
+    display:flex; align-items:center; justify-content:center;
+    color:#b0a99a; font-size:11px; letter-spacing:.1em; }
   a.headline { color:var(--ink); text-decoration:none; font-size:21px;
     font-weight:700; line-height:1.25; display:block; }
   a.headline:hover { color:var(--accent); text-decoration:underline; }
@@ -36,69 +40,92 @@
   footer { margin-top:44px; text-align:center; font-size:12px; color:var(--muted);
     border-top:1px solid var(--rule); padding-top:16px; }
   @media (max-width:480px) {
-    h1.title { font-size:32px; } a.headline { font-size:19px; }
+    h1.title { font-size:32px; } a.headline { font-size:18px; }
+    .thumb { flex-basis:96px; width:96px; height:70px; }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header class="masthead">
-      <div class="kicker">Your Daily Digest &middot; Tech &middot; Markets &middot; World</div>
+      <div class="kicker">Your Daily Digest &middot; Tech &middot; Markets &middot; SA &middot; World</div>
       <h1 class="title">The Morning Briefing</h1>
-      <div class="dateline">Friday, 03 July 2026 &middot; PREVIEW with sample stories</div>
+      <div class="dateline">Friday, 03 July 2026 &middot; PREVIEW (image boxes show where photos appear)</div>
     </header>
 
     <section class="cat">
       <h2 class="cat-name">Tech &amp; AI</h2>
       <article>
-        <a class="headline" href="#">OpenAI unveils new reasoning model with agentic tool use</a>
-        <div class="src">TechCrunch</div>
-        <p class="dek">The company says the model can chain dozens of tool calls autonomously to complete multi-step tasks.</p>
+        <div class="txt">
+          <a class="headline" href="#">OpenAI unveils new reasoning model with agentic tool use</a>
+          <div class="src">TechCrunch</div>
+          <p class="dek">The company says the model can chain dozens of tool calls autonomously to complete multi-step tasks.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
       </article>
       <article>
-        <a class="headline" href="#">Apple reportedly delays foldable iPhone to 2027</a>
-        <div class="src">The Verge</div>
-        <p class="dek">Supply-chain sources point to yield problems with the hinge assembly.</p>
-      </article>
-      <article>
-        <a class="headline" href="#">A deep dive into the new Arm datacenter chip architecture</a>
-        <div class="src">Ars Technica</div>
-        <p class="dek">Benchmarks suggest meaningful gains in performance-per-watt for cloud workloads.</p>
+        <div class="txt">
+          <a class="headline" href="#">Apple reportedly delays foldable iPhone to 2027</a>
+          <div class="src">The Verge</div>
+          <p class="dek">Supply-chain sources point to yield problems with the hinge assembly.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
       </article>
     </section>
 
     <section class="cat">
       <h2 class="cat-name">Business &amp; Markets</h2>
       <article>
-        <a class="headline" href="#">Global markets steady as investors weigh the rate path</a>
-        <div class="src">BBC</div>
-        <p class="dek">European shares opened flat ahead of key inflation data later this week.</p>
-      </article>
-      <article>
-        <a class="headline" href="#">Oil edges higher on renewed supply concerns</a>
-        <div class="src">MarketWatch</div>
-        <p class="dek">Brent crude rose as tensions threatened key shipping lanes.</p>
+        <div class="txt">
+          <a class="headline" href="#">Global markets steady as investors weigh the rate path</a>
+          <div class="src">BBC</div>
+          <p class="dek">European shares opened flat ahead of key inflation data later this week.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
       </article>
     </section>
 
     <section class="cat">
-      <h2 class="cat-name">World &amp; South Africa</h2>
+      <h2 class="cat-name">South Africa</h2>
       <article>
-        <a class="headline" href="#">South Africa and Ghana in diplomatic row over migrant claims</a>
-        <div class="src">BBC</div>
-        <p class="dek">Pretoria denies allegations amid rising regional tensions.</p>
+        <div class="txt">
+          <a class="headline" href="#">Eskom announces revised winter maintenance schedule</a>
+          <div class="src">Daily Maverick</div>
+          <p class="dek">The utility says planned outages will ease into the coming months.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
       </article>
       <article>
-        <a class="headline" href="#">Eskom announces revised winter maintenance schedule</a>
-        <div class="src">Daily Maverick</div>
-        <p class="dek">The utility says planned outages will ease into the coming months.</p>
+        <div class="txt">
+          <a class="headline" href="#">Rand firms against the dollar ahead of budget update</a>
+          <div class="src">BusinessTech</div>
+          <p class="dek">The currency gained as markets awaited the finance minister's mid-term statement.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
+      </article>
+      <article>
+        <div class="txt">
+          <a class="headline" href="#">Cape Town rolls out new water-management plan for summer</a>
+          <div class="src">News24</div>
+          <p class="dek">Officials outline reservoir targets and restrictions for the dry season.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
       </article>
     </section>
 
-    <footer>
-      Auto-generated from public RSS feeds &middot; Updated 04:00 UTC &middot;
-      Sources: TechCrunch, The Verge, Ars Technica, BBC, MarketWatch, CNBC, Daily Maverick, News24
-    </footer>
+    <section class="cat">
+      <h2 class="cat-name">World</h2>
+      <article>
+        <div class="txt">
+          <a class="headline" href="#">Leaders gather for summit on global trade rules</a>
+          <div class="src">Al Jazeera</div>
+          <p class="dek">Negotiators aim to break a deadlock over tariffs before the deadline.</p>
+        </div>
+        <div class="thumb">IMAGE</div>
+      </article>
+    </section>
+
+    <footer>Auto-generated from public RSS feeds &middot; Updated 04:00 UTC</footer>
   </div>
 </body>
 </html>
